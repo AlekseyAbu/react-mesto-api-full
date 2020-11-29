@@ -4,21 +4,18 @@ export const BASE_URL = 'http://localhost:3000';
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
-        headers: {
-            
+        headers: {       
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email, password })
     })
         .then((response) => {
-            if (response.status === 200) {
+            if (response.ok) {
                 return response.json();
             }
-            return (response)
+            Promise.reject(`Ошибка: ${response.status}`)
         })
-        .then((res) => {
-            return res;
-        })       
+        // .catch(err => console.log(err))      
 };
 
 
@@ -27,12 +24,16 @@ export const authorize = (email, password) => {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            
+            'Content-Type': 'application/json'     
         },
         body: JSON.stringify({ email, password })
     })
-        .then((response => response.json()))
+        .then((response) => {
+            if(response.ok){
+                return response.json()
+            }
+            Promise.reject(`Ошибка: ${response.status}`)
+        })
         .then((data) => {
             console.log(data)
             if (data) {
@@ -43,6 +44,7 @@ export const authorize = (email, password) => {
                 return;
             }
         })
+        // .catch(err => console.log(err))   
 };
 
 export const getContent = (token) => {
@@ -55,16 +57,13 @@ export const getContent = (token) => {
         }
     })
     .then((response => {
-        console.log(response)
-        if(response.status === 200){
+        console.log(response.json())
+        if(response.ok){
             return response.json()
         }
-        return 
+        Promise.reject(`Ошибка: ${response.status}`)
     }))
-        .then(data => {
-            console.log(data)
-            return data; 
-        })
+        
 }
 
 

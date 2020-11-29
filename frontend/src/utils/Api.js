@@ -26,18 +26,24 @@ class Api {
             .then(this.handleOriginalResponse)
     }
 
-    deletInitialCards(id) {
+    deletInitialCards(id, token) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            }
         })
         .then(this.handleOriginalResponse)
     }
 
-    createInitialCards(item) {
+    createInitialCards(item, token) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            },
             body: JSON.stringify(item)
         })
         .then(this.handleOriginalResponse)
@@ -90,10 +96,10 @@ class Api {
 
 const api = new Api({
     baseUrl: 'http://localhost:3001',
-    headers: {
-        // authorization: '251eb665-7100-400a-a869-0fac2a58b885',
-        'Content-Type': 'application/json'
-    }
+    // headers: {
+    //     // authorization: '251eb665-7100-400a-a869-0fac2a58b885',
+    //     'Content-Type': 'application/json'
+    // }
     // groupID: 'cohort-14'
 })
 

@@ -89,7 +89,8 @@ function App() {
   }
 
   function handleCardDelete(id) {
-    api.deletInitialCards(id).then(() => {
+    const token = getToken();
+    api.deletInitialCards(id, token).then(() => {
 
       const newDataCards = dataCards.filter((item) => item._id !== id);
 
@@ -114,16 +115,27 @@ function App() {
       .catch(err => console.error(err))
   }
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const token = getToken();
+  //   console.log("token")
+  //   api.getAppInfo(token).then((res) => {
+  //     const [initialCard, profileData] = res;
+  //     setCurrentUser(profileData)
+  //     setDataCards(initialCard)
+  //   })
+  //     .catch(err => console.error(err))
+  // }, [])
+
+  function startInfo() {
     const token = getToken();
+    console.log("token")
     api.getAppInfo(token).then((res) => {
       const [initialCard, profileData] = res;
       setCurrentUser(profileData)
       setDataCards(initialCard)
-
     })
       .catch(err => console.error(err))
-  }, [])
+  }
 
   //Ниже 14 проектная
 
@@ -147,7 +159,8 @@ function App() {
       return;
     }
 
-    mestoAuth.getContent(jwt).then((res) => {
+    mestoAuth.getContent(jwt)
+    .then((res) => {
       if (res) {
         console.log(res)
         const userData = {
@@ -158,8 +171,11 @@ function App() {
         setUserData(userData);
         history.push('/')
       }
-    });
+    })
+    .catch(err => console.log(err))
   }
+
+console.log(localStorage)
 
   const authorizeMesto = (data) => {
     const { email, password } = data;
@@ -170,12 +186,12 @@ function App() {
         if (!data) {
           setMessage('Что-то пошло не так!')
         }
-        console.log(data)
         if (data.token) {
           setToken(data.token);
           setUserData({ username: '', password: '' });
           setMessage('');
           handleLogin(data.token);
+          startInfo()
           console.log()
           history.push('/');
         }
