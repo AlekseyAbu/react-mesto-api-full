@@ -28,6 +28,7 @@ export const authorize = (email, password) => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
+            
         },
         body: JSON.stringify({ email, password })
     })
@@ -48,13 +49,20 @@ export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
-            'Accept': 'application/json',
+            // 'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
     })
-    .then((response => response.json()))
+    .then((response => {
+        console.log(response)
+        if(response.status === 200){
+            return response.json()
+        }
+        return 
+    }))
         .then(data => {
+            console.log(data)
             return data; 
         })
 }

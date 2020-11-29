@@ -78,7 +78,8 @@ function App() {
   }
 
   function handleAddPlaceSubmit(data) {
-    api.createInitialCards(data).then(res => {
+    const token = getToken();
+    api.createInitialCards(data, token).then(res => {
       setDataCards([res, ...dataCards]);
       setIsAddPlacePopupOpen(false);
     })
@@ -114,7 +115,8 @@ function App() {
   }
 
   useEffect(() => {
-    api.getAppInfo().then((res) => {
+    const token = getToken();
+    api.getAppInfo(token).then((res) => {
       const [initialCard, profileData] = res;
       setCurrentUser(profileData)
       setDataCards(initialCard)
@@ -147,9 +149,10 @@ function App() {
 
     mestoAuth.getContent(jwt).then((res) => {
       if (res) {
-        console.log(res.data)
+        console.log(res)
         const userData = {
-          email: res.data.email
+
+          email: res.email
         }
         setLoggedIn(true);
         setUserData(userData);
@@ -192,7 +195,7 @@ function App() {
           setMessage('');
           setisInfoTooltip(true);
           setStatus('successfully');
-          history.push('/sign-up');
+          history.push('/signin');
         } else {
           setMessage('Что-то пошло не так!')
           console.log('hey')
@@ -229,7 +232,7 @@ function App() {
             component={Main}
           />
 
-          <Route path="/sign-up">
+          <Route path="/signin">
 
             <Login handleLogin={handleLogin}
               authorizeMesto={authorizeMesto}
@@ -237,7 +240,7 @@ function App() {
 
 
           </Route>
-          <Route path='/sign-in'>
+          <Route path='/signup'>
             <Register registerMesto={registerMesto} />
           </Route>
         </Switch>

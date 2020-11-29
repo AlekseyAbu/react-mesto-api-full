@@ -1,8 +1,8 @@
 class Api {
-    constructor({ baseUrl, headers, groupID }) {
+    constructor({ baseUrl, headers }) {
         this._baseUrl = baseUrl;
         this._headers = headers;
-        this._groupID = groupID;
+        // this._groupID = groupID;
     }
 
     handleOriginalResponse = function(res){
@@ -13,18 +13,21 @@ class Api {
         
     }
 
-    getAppInfo() {
-        return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+    getAppInfo(token) {
+        return Promise.all([this.getInitialCards(token), this.getUserInfo(token)]);
     }
-    getInitialCards() {
-        return fetch(`${this._baseUrl}/${this._groupID}/cards`, {
-            headers: this._headers
+    getInitialCards(token) {
+        return fetch(`${this._baseUrl}/cards`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            }
         })
             .then(this.handleOriginalResponse)
     }
 
     deletInitialCards(id) {
-        return fetch(`${this._baseUrl}/${this._groupID}/cards/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
@@ -32,23 +35,26 @@ class Api {
     }
 
     createInitialCards(item) {
-        return fetch(`${this._baseUrl}/${this._groupID}/cards`, {
+        return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify(item)
         })
         .then(this.handleOriginalResponse)
     }
-
-    getUserInfo() {
-        return fetch(`${this._baseUrl}/${this._groupID}/users/me`, {
-            headers: this._headers
+///////////
+    getUserInfo(token) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${token}`
+            }
         })
         .then(this.handleOriginalResponse)
     }
 
     likeCard(id) {
-        return fetch(`${this._baseUrl}/${this._groupID}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
             method: 'PUT',
             headers: this._headers
         })
@@ -56,7 +62,7 @@ class Api {
     }
 
     dislikeCard(id) {
-        return fetch(`${this._baseUrl}/${this._groupID}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })
@@ -64,7 +70,7 @@ class Api {
     }
 
     creatProfile({name, about}) {
-        return fetch(`${this._baseUrl}/${this._groupID}/users/me`, {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({name, about})
@@ -73,7 +79,7 @@ class Api {
     }
 
     creatAvatar(userAvatar) {
-        return fetch(`${this._baseUrl}/${this._groupID}/users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({avatar: userAvatar})
@@ -83,12 +89,12 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/',
+    baseUrl: 'http://localhost:3001',
     headers: {
-        authorization: '251eb665-7100-400a-a869-0fac2a58b885',
+        // authorization: '251eb665-7100-400a-a869-0fac2a58b885',
         'Content-Type': 'application/json'
-    },
-    groupID: 'cohort-14'
+    }
+    // groupID: 'cohort-14'
 })
 
 export default api;

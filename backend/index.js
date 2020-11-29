@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
+const cors = require('cors')
 
 const app = express();
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -18,7 +19,9 @@ const {
   postUser
 } = require('./controllers/users.js')
 
+app.use(cors())
 app.use(bodyParser.json());
+
 
 // подключаемся к серверу mongo
 // eslint-disable-next-line no-undef
