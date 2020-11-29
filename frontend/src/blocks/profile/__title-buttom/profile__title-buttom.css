@@ -1,0 +1,22 @@
+.profile__title-buttom{
+    background-color: black;
+    box-sizing: border-box;
+    background: url(../../../images/karandash.svg) no-repeat;
+    background-position: center center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #fff;
+    margin-left: 24px;
+}
+
+.profile__title-buttom:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 360px){
+    .profile__title-buttom{
+        width: 18px;
+        height: 18px;
+    }
+}

@@ -1,0 +1,8 @@
+.card__label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 246px;
+    margin: 25px auto 31px;
+}

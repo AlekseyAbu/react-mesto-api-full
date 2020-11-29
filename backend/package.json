@@ -1,0 +1,38 @@
+{
+  "name": "express-mesto",
+  "version": "1.0.0",
+  "description": "## Директории",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlekseyAbu/express-mesto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlekseyAbu/express-mesto/issues"
+  },
+  "homepage": "https://github.com/AlekseyAbu/express-mesto#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "celebrate": "^13.0.4",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13",
+    "validator": "^13.1.17",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.6"
+  }
+}

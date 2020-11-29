@@ -1,0 +1,13 @@
+.profile__description{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 0;
+    margin-left: 40px;
+}
+
+@media screen and (max-width: 768px){
+    .profile__description{
+        margin-left: 0;
+    }
+}

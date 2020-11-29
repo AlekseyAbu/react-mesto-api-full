@@ -1,0 +1,14 @@
+
+
+.card__label-like{
+    background-image: url(../../../images/heart.svg) ;
+    width: 21px;
+    height: 19px;
+    border: none;
+    background-color: #fff;
+}
+
+.card__label-like:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}

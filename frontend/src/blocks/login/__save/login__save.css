@@ -1,0 +1,16 @@
+.login__save{
+    max-width: 358px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    margin: 215px 0 15px;
+    color: black;
+    padding-top: 13px;
+    padding-bottom: 18px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    
+}
