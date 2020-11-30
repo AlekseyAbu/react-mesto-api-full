@@ -57,7 +57,7 @@ export const getContent = (token) => {
         }
     })
     .then((response => {
-        console.log(response.json())
+        
         if(response.ok){
             return response.json()
         }

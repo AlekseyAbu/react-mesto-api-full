@@ -15,8 +15,10 @@ function Card({ item, onCardClick, onCardDelete, onCardLike, onCardDislike }) {
         onCardDelete(item._id)
     }
     const currentUser = React.useContext(CurrentUserContext);
-    const isOwn = item.owner._id === currentUser._id;
-    const isLiked = item.likes.some(i => i._id === currentUser._id);
+    console.log(item)
+    console.log(currentUser)
+    const isOwn = item.owner === currentUser._id;
+    // const isLiked = item.likes.some(i => i._id === currentUser._id);
     return (
         <li className="card">
             <button onClick={handleCardDelete} className={`card__basket ${isOwn ? 'card__basket_active' : ''}`}></button>
@@ -25,9 +27,9 @@ function Card({ item, onCardClick, onCardDelete, onCardLike, onCardDislike }) {
             <div className="card__label">
                 <h3 className="card__title">{item.name}</h3>
                 <div className="card__conteiner-like">
-                    <button onClick={() => { if (isLiked) { handleCardDislike() } else { handleCardLike() } }} className={`card__label-like ${isLiked ? 'card__label-like_black' : ''}`}></button>
+                    {/* <button onClick={() => { if (isLiked) { handleCardDislike() } else { handleCardLike() } }} className={`card__label-like ${isLiked ? 'card__label-like_black' : ''}`}></button> */}
                     {/* {isLiked && <button type="button" className='card__label-like card__label-like_black' onClick={onCardLike}></button>}{isLiked ? handleCardLike() : handleCardDislike()} */}
-                    <p className="card__number-like">{item.likes.length}</p>
+                    {/* <p className="card__number-like">{item.likes.length}</p> */}
                 </div>
             </div>
         </li>

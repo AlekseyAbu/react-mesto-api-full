@@ -2,6 +2,7 @@ import React from 'react';
 import imageLogo from '../images/Vector.svg';
 import { Route, Switch, Link, useHistory } from 'react-router-dom';
 import { removeToken } from '../utils/token';
+import { CurrentUserContext } from './contexts.js';
 
 function Header(props) {
     const headerEmail = `${props.loggedIn ? 'header__email' : 'header__email_hidden'}`;
@@ -17,7 +18,7 @@ function Header(props) {
             <header className="header">
                 <img className="header__logo" src={imageLogo} alt="Логотип" />
                 <div className='header__info'>
-                    <p className={headerEmail}>yandex@yandex.ru</p>
+                    <p className={headerEmail}>{props.userData.email}</p>
 
                     <Switch>
                         <Route exact path='/'>

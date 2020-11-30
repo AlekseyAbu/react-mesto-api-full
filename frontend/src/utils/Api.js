@@ -1,15 +1,15 @@
 class Api {
-    constructor({ baseUrl, headers }) {
+    constructor({ baseUrl}) {
         this._baseUrl = baseUrl;
-        this._headers = headers;
+        // this._headers = headers;
         // this._groupID = groupID;
     }
 
     handleOriginalResponse = function(res){
-        if (!res.ok) {
-            return Promise.reject(`Error: ${res.status}`);
+        if (res.ok) {
+            return res.json();
           }
-          return res.json();
+          return Promise.reject(`Error: ${res.status}`);
         
     }
 
@@ -95,7 +95,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'http://localhost:3000',
     // headers: {
     //     // authorization: '251eb665-7100-400a-a869-0fac2a58b885',
     //     'Content-Type': 'application/json'

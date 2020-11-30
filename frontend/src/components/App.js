@@ -128,9 +128,10 @@ function App() {
 
   function startInfo() {
     const token = getToken();
-    console.log("token")
+   
     api.getAppInfo(token).then((res) => {
       const [initialCard, profileData] = res;
+      console.log(res)
       setCurrentUser(profileData)
       setDataCards(initialCard)
     })
@@ -152,7 +153,6 @@ function App() {
 
   const tokenCheck = () => {
     const jwt = getToken();
-    console.log(jwt)
 
     if (!jwt) {
       removeToken(jwt);
@@ -169,13 +169,12 @@ function App() {
         }
         setLoggedIn(true);
         setUserData(userData);
+        startInfo()
         history.push('/')
       }
     })
     .catch(err => console.log(err))
   }
-
-console.log(localStorage)
 
   const authorizeMesto = (data) => {
     const { email, password } = data;
@@ -192,7 +191,7 @@ console.log(localStorage)
           setMessage('');
           handleLogin(data.token);
           startInfo()
-          console.log()
+          console.log(data)
           history.push('/');
         }
       })
@@ -229,7 +228,7 @@ console.log(localStorage)
 
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
-        <Header loggedIn={loggedIn} />
+        <Header loggedIn={loggedIn} userData={userData} />
 
         <Switch>
           <ProtectedRoute exact path="/"
