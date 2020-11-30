@@ -128,10 +128,11 @@ function App() {
 
   function startInfo() {
     const token = getToken();
-   
+   console.log(token)
     api.getAppInfo(token).then((res) => {
       const [initialCard, profileData] = res;
       console.log(res)
+      console.log(initialCard)
       setCurrentUser(profileData)
       setDataCards(initialCard)
     })
@@ -175,6 +176,7 @@ function App() {
     })
     .catch(err => console.log(err))
   }
+  // console.log(localStorage)
 
   const authorizeMesto = (data) => {
     const { email, password } = data;

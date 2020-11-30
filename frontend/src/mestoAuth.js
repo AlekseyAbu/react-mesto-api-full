@@ -1,5 +1,5 @@
 import { setToken } from './utils/token';
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://api.mestoabu.students.nomoredomains.icu';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -56,8 +56,7 @@ export const getContent = (token) => {
             'Authorization': `Bearer ${token}`,
         }
     })
-    .then((response => {
-        
+    .then((response => {    
         if(response.ok){
             return response.json()
         }
