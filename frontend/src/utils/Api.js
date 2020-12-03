@@ -95,12 +95,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://localhost:3000',
-    // headers: {
-    //     // authorization: '251eb665-7100-400a-a869-0fac2a58b885',
-    //     'Content-Type': 'application/json'
-    // }
-    // groupID: 'cohort-14'
+    baseUrl: 'http://api.mestoabu.students.nomoredomains.icu'
 })
 
 export default api;
