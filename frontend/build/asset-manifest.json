@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.30930737.chunk.css",
+    "main.js": "/static/js/main.f5672b98.chunk.js",
+    "main.js.map": "/static/js/main.f5672b98.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.16bb663c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.16bb663c.js.map",
+    "static/js/2.d418253f.chunk.js": "/static/js/2.d418253f.chunk.js",
+    "static/js/2.d418253f.chunk.js.map": "/static/js/2.d418253f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.30930737.chunk.css.map": "/static/css/main.30930737.chunk.css.map",
+    "static/js/2.d418253f.chunk.js.LICENSE.txt": "/static/js/2.d418253f.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/pencil.a086f758.svg",
+    "static/media/Union-no.df8eddf6.svg": "/static/media/Union-no.df8eddf6.svg",
+    "static/media/Union.1b6082f8.svg": "/static/media/Union.1b6082f8.svg",
+    "static/media/Vector.a307e1c4.svg": "/static/media/Vector.a307e1c4.svg",
+    "static/media/plus.d86bb2ed.svg": "/static/media/plus.d86bb2ed.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.16bb663c.js",
+    "static/js/2.d418253f.chunk.js",
+    "static/css/main.30930737.chunk.css",
+    "static/js/main.f5672b98.chunk.js"
+  ]
+}
