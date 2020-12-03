@@ -1,8 +1,8 @@
-const NotFoundError = require('../erorrs/not-found-err.js') //404
+const NotFoundError = require('../erorrs/not-found-err.js');
 
 const getError = (req, res, next) => {
   throw new NotFoundError('Запрашиваемый ресурс не найден')
-  .catch(next)
+    .catch(next);
 };
 
 module.exports = getError;

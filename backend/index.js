@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
-const cors = require('cors')
+const cors = require('cors');
 
 const app = express();
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -10,18 +10,15 @@ const auth = require('./middlewares/auth.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const PORT = 3000;
-const path = require('path');
 const userRoutes = require('./routes/users.js');
 const cardRoutes = require('./routes/cards.js');
-const getErorr = require('./controllers/erorr.js');
 const {
   login,
-  postUser
+  postUser,
 } = require('./controllers/users.js')
 
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
-
 
 // подключаемся к серверу mongo
 // eslint-disable-next-line no-undef
@@ -55,6 +52,7 @@ app.use(auth);
 
 app.use('/', userRoutes);
 app.use('/', cardRoutes);
+app.use('*', () => { throw new Error('Запрашиваемый ресурс не найден'); });
 
 app.use(errorLogger);
 

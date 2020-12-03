@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-var validator = require('validator');//no forget npm install validator
+const validator = require('validator');
 
 const userSchema = new Schema({
   email: {
@@ -8,8 +8,8 @@ const userSchema = new Schema({
     unique: true,
     validate: {
       validator: validator.isEmail,
-      massage: 'email невалидный'
-     }
+      massage: 'email невалидный',
+    },
   },
   password: {
     type: String,

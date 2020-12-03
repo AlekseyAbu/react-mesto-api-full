@@ -7,7 +7,6 @@ const {
   deletCard,
 } = require('../controllers/cards.js');
 
-
 router.get('/cards', getCards);
 router.post('/cards', celebrate({
   body: Joi.object().keys({
@@ -18,7 +17,7 @@ router.post('/cards', celebrate({
 postCard);
 router.delete('/cards/:cardId', celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().length(24)
+    cardId: Joi.string().length(24),
   }),
 }),
 deletCard);
