@@ -79,6 +79,8 @@ function App() {
 
   function handleAddPlaceSubmit(data) {
     const token = getToken();
+    console.log(token)
+    console.log(data)
     api.createInitialCards(data, token).then(res => {
       setDataCards([res, ...dataCards]);
       setIsAddPlacePopupOpen(false);
@@ -128,7 +130,7 @@ function App() {
 
   function startInfo() {
     const token = getToken();
-   console.log(token)
+    console.log(token)
     api.getAppInfo(token).then((res) => {
       const [initialCard, profileData] = res;
       console.log(res)
@@ -165,7 +167,7 @@ function App() {
       if (res) {
         console.log(res)
         const userData = {
-
+  
           email: res.email
         }
         setLoggedIn(true);
@@ -176,12 +178,10 @@ function App() {
     })
     .catch(err => console.log(err))
   }
-  // console.log(localStorage)
+  console.log(localStorage)
 
   const authorizeMesto = (data) => {
     const { email, password } = data;
-    console.log(data)
-    console.log('hay')
     mestoAuth.authorize(email, password)
       .then((data) => {
         if (!data) {

@@ -53,10 +53,8 @@ login);
 
 app.use(auth);
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', userRoutes);
 app.use('/', cardRoutes);
-app.use('*', getErorr);
 
 app.use(errorLogger);
 
@@ -76,6 +74,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  // console.log('privet');
+
 });

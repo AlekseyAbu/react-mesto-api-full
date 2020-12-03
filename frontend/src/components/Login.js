@@ -21,7 +21,6 @@ function Login(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         const { email, password } = data;
-        console.log(!email || !password)
         if (!email || !password) {
             return;
         }
