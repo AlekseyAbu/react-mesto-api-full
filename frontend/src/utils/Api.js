@@ -95,7 +95,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'https://api.mestoaa.students.nomoredomains.icu'
 })
 
 export default api;
