@@ -95,7 +95,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'http://api.mestoaa.students.nomoredomains.icu'
+    baseUrl: 'http://api.mestoabu.students.nomoredomains.icu'
 })
 
 export default api;
