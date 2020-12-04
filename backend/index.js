@@ -51,7 +51,7 @@ login);
 
 // app.use(auth);
 
-app.use('/users ', auth, userRoutes);
+app.use('/users', auth, userRoutes);
 app.use('/cards', auth, cardRoutes);
 
 app.use('*', (req, res, next) => {
