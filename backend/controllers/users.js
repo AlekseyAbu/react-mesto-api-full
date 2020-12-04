@@ -93,7 +93,7 @@ const getUserMe = (req, res, next) => {
   User.findById(_id)
     .orFail(() => {
       // eslint-disable-next-line no-undef
-      throw new NotFound('Не найден');
+      throw new NotFoundError('Не найден');
     })
     .then((user) => res.send(user))
     .catch(next);
