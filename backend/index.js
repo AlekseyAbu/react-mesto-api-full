@@ -17,7 +17,7 @@ const cardRoutes = require('./routes/cards.js');
 const {
   login,
   postUser,
-} = require('./controllers/users.js')
+} = require('./controllers/users.js');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -54,13 +54,14 @@ app.use(auth);
 
 app.use('/', userRoutes);
 app.use('/', cardRoutes);
-app.use('*', () => { throw new Error('Запрашиваемый ресурс не найден'); });
+// app.use('*', () => { throw new Error('Запрашиваемый ресурс не найден'); });
 
 app.use(errorLogger);
 
 app.use(errors());
 
 app.use((err, req, res, next) => {
+  console.log(err)
   const { statusCode = 500, message } = err;
 
   res
@@ -74,5 +75,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-
+  console.log('hey')
 });
