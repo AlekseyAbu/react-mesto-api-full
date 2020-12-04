@@ -35,7 +35,7 @@ const getUser = (req, res, next) => {
 };
 
 const postUser = (req, res, next) => {
-  const { name, about, avatar, email, password } = req.body;
+  const { email } = req.body;
   User.findOne({ email })
     .then((user) => {
       if (user) {
@@ -57,7 +57,7 @@ const postUser = (req, res, next) => {
         });
     })
     .catch((err) => {
-      if (err.statusCode = 409) {
+      if (err.statusCode === 409) {
         next(new ConflictingRequest('Пользователь существует'));
       }
       next(new BadRequest('Ошибка регистрации'));

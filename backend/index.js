@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 // eslint-disable-next-line import/no-extraneous-dependencies
 const bodyParser = require('body-parser');
+const NotFoundError = require('./erorrs/not-found-err.js');
 const auth = require('./middlewares/auth.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -53,7 +54,7 @@ login);
 app.use('/users ', auth, userRoutes);
 app.use('/cards', auth, cardRoutes);
 
-app.use('*', () => {
+app.use('*', (req, res, next) => {
   // eslint-disable-next-line no-undef
   next(new NotFoundError('Запрашиваемый ресурс не найден'));
 });
@@ -74,6 +75,7 @@ app.use((err, req, res, next) => {
         ? 'На сервере произошла ошибка'
         : message,
     });
+  next();
 });
 
 app.listen(PORT, () => {
