@@ -1,5 +1,3 @@
-//mestoaa.students.nomoredomains.icu
-
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
@@ -50,18 +48,22 @@ app.post('/signin', celebrate({
 }),
 login);
 
-app.use(auth);
+// app.use(auth);
 
-app.use('/', userRoutes);
-app.use('/', cardRoutes);
-// app.use('*', () => { throw new Error('Запрашиваемый ресурс не найден'); });
+app.use('/users ', auth, userRoutes);
+app.use('/cards', auth, cardRoutes);
+
+app.use('*', () => {
+  // eslint-disable-next-line no-undef
+  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+});
 
 app.use(errorLogger);
 
 app.use(errors());
 
 app.use((err, req, res, next) => {
-  console.log(err)
+  console.log(err);
   const { statusCode = 500, message } = err;
 
   res
@@ -70,10 +72,10 @@ app.use((err, req, res, next) => {
       // проверяем статус и выставляем сообщение в зависимости от него
       message: statusCode === 500
         ? 'На сервере произошла ошибка'
-        : message
+        : message,
     });
 });
 
 app.listen(PORT, () => {
-  console.log('hey')
+  console.log('hey');
 });
